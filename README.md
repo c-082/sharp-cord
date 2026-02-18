@@ -19,7 +19,7 @@ cd sharp-cord
 ```
 
 2. Set your bot token in environment variables:
-BOT_TOKEN="your_bot_token_here"
+`BOT_TOKEN="your_bot_token_here"`
 
 3. Run the bot:
 ```bash
