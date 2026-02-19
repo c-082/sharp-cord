@@ -10,7 +10,7 @@ internal static class KeepAlive
         var builder = WebApplication.CreateBuilder();
 
         var app = builder.Build();
-        app.MapMethods("/", ["HEAD"], () => Results.Ok("The bot is running!"));
+        app.MapMethods("/", ["GET", "HEAD"], () => Results.Ok("The bot is running!"));
 
         var portEnv = Environment.GetEnvironmentVariable("PORT");
 
