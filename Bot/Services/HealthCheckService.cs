@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace SharpCord.Bot.Services;
 
-internal static class KeepAlive
+internal static class HealthCheckService
 {
     public static void Start()
     {

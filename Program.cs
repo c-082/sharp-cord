@@ -25,5 +25,5 @@ var services = new ServiceCollection()
     .BuildServiceProvider();
 
 var bot = services.GetRequiredService<Bot>();
-KeepAlive.Start();
+HealthCheckService.Start();
 await bot.RunAsync();
