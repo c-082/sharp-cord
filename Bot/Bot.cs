@@ -30,6 +30,9 @@ internal class Bot(DiscordSocketClient client, CommandHandler handler)
         await _client.LoginAsync(TokenType.Bot, token);
         await _client.StartAsync();
 
+        _client.Ready += async () =>
+            await Console.Out.WriteLineAsync($"Logged in as {_client.CurrentUser}");
+
         await Task.Delay(-1);
     }
 

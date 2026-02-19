@@ -19,7 +19,7 @@ public class UtilitySlashModule(UtilityService utility) : InteractionModuleBase<
     {
         if (maxValue <= 0)
         {
-            await ReplyAsync($"""
+            await RespondAsync($"""
             Usage:
             `$rng <maxValue>`
             where maxValue is an integer between 1 and {int.MaxValue}

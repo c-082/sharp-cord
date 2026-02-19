@@ -33,7 +33,7 @@ internal class CommandHandler(
 
         _client.Ready += async () =>
         {
-            await _interactions.AddCommandsGloballyAsync();
+            await _interactions.RegisterCommandsGloballyAsync();
         };
     }
     private async Task HandleMessageAsync(SocketMessage rawMessage)
