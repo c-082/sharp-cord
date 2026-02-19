@@ -8,28 +8,14 @@ using SharpCord.Bot.Services;
 
 namespace SharpCord.Bot;
 
-internal class Bot
+internal class Bot(DiscordSocketClient client, CommandHandler handler)
 {
-    private readonly DiscordSocketClient _client;
-    private readonly IServiceProvider _services;
-    private readonly UtilityService _utility;
+    private readonly DiscordSocketClient _client = client;
+    private readonly CommandHandler _handler = handler;
 
-    public Bot()
-    {
-        _client = new(new()
-        {
-            GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent
-        });
-        _utility = new();
-        _services = new ServiceCollection()
-            .AddSingleton(_client)
-            .AddSingleton(_utility)
-            .BuildServiceProvider();
-    }
     public async Task RunAsync()
     {
-        var handler = new CommandHandler(_client, _services);
-        await handler.InitializeAsync();
+        await _handler.InitializeAsync();
 
         var token = Environment.GetEnvironmentVariable("BOT_TOKEN");
 

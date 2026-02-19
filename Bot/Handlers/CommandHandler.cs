@@ -4,20 +4,16 @@ using Discord.Interactions;
 
 namespace SharpCord.Bot.Handlers;
 
-internal class CommandHandler
+internal class CommandHandler(
+    DiscordSocketClient client,
+    CommandService commands,
+    InteractionService interactions,
+    IServiceProvider? services)
 {
-    private readonly DiscordSocketClient _client;
-    private readonly CommandService _commands;
-    private readonly IServiceProvider? _services;
-    private readonly InteractionService _interactions;
-
-    public CommandHandler(DiscordSocketClient client, IServiceProvider? services)
-    {
-        _client = client;
-        _commands = new();
-        _services = services;
-        _interactions = new(_client);
-    }
+    private readonly DiscordSocketClient _client = client;
+    private readonly CommandService _commands = commands;
+    private readonly IServiceProvider? _services = services;
+    private readonly InteractionService _interactions = interactions;
 
     public async Task InitializeAsync()
     {
