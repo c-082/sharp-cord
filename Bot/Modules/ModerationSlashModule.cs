@@ -19,14 +19,15 @@ public class ModerationSlashModule(ModerationService moderation) : InteractionMo
         [Summary("reason", "Reason for kicking the member.")] string? reason = null)
     {
         var moderator = Context.Guild.GetUser(Context.User.Id);
+        var botId = Context.Client.CurrentUser.Id;
 
         try
         {
             await _moderation.KickAsync(Context.Guild,
                 moderator,
                 target,
-                reason
-            );
+                reason,
+                botId);
         }
         catch (InvalidOperationException e)
         {
@@ -47,6 +48,7 @@ public class ModerationSlashModule(ModerationService moderation) : InteractionMo
         [Summary("reason", "Reason for banning the user.")] string? reason = null)
     {
         var moderator = Context.Guild.GetUser(Context.User.Id);
+        var botId = Context.Client.CurrentUser.Id;
 
         try
         {
@@ -54,8 +56,8 @@ public class ModerationSlashModule(ModerationService moderation) : InteractionMo
                 moderator,
                 target,
                 pruneDays,
-                reason
-            );
+                reason,
+                botId);
         }
         catch (InvalidOperationException e)
         {

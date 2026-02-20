@@ -20,13 +20,15 @@ public class ModerationModule(ModerationService moderation) : ModuleBase<SocketC
         [Summary("Reason for kicking the member.")][Remainder] string? reason = null)
     {
         var moderator = Context.Guild.GetUser(Context.User.Id);
+        var botId = Context.Client.CurrentUser.Id;
 
         try
         {
             await _moderation.KickAsync(Context.Guild,
                 moderator,
                 target,
-                reason);
+                reason,
+                botId);
         }
         catch (InvalidOperationException e)
         {
@@ -48,14 +50,16 @@ public class ModerationModule(ModerationService moderation) : ModuleBase<SocketC
         [Summary("Reason to ban the member.")][Remainder] string? reason = null)
     {
         var moderator = Context.Guild.GetUser(Context.User.Id);
+        var botId = Context.Client.CurrentUser.Id;
+
         try
         {
             await _moderation.BanAsync(Context.Guild,
             moderator,
             target,
             pruneDays,
-            reason
-            );
+            reason,
+            botId);
         }
         catch (InvalidOperationException e)
         {

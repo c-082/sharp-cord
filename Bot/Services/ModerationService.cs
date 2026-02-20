@@ -10,12 +10,23 @@ public class ModerationService
         SocketGuild guild,
         SocketGuildUser moderator,
         SocketGuildUser target,
-        string? reason = null
+        string? reason,
+        ulong botId
     )
     {
         if (target.Id == guild.OwnerId)
         {
             throw new InvalidOperationException("Cannot kick the server owner.");
+        }
+
+        if (target.Id == moderator.Id)
+        {
+            throw new InvalidOperationException("You can't kick yourself");
+        }
+
+        if (target.Id == botId)
+        {
+            throw new InvalidOperationException("I can't kick myself");
         }
 
         if (target.Hierarchy >= moderator.Hierarchy)
@@ -36,12 +47,23 @@ public class ModerationService
         SocketGuildUser moderator,
         SocketGuildUser target,
         int pruneDays,
-        string? reason
+        string? reason,
+        ulong botId
     )
     {
         if (target.Id == guild.OwnerId)
         {
             throw new InvalidOperationException("Cannot ban the server owner.");
+        }
+
+        if (target.Id == moderator.Id)
+        {
+            throw new InvalidOperationException("You can't ban yourself");
+        }
+
+        if (target.Id == botId)
+        {
+            throw new InvalidOperationException("I can't ban myself");
         }
 
         if (target.Hierarchy >= moderator.Hierarchy)
