@@ -20,6 +20,7 @@ var services = new ServiceCollection()
         new(provider.GetRequiredService<DiscordSocketClient>().Rest))
     .AddSingleton<CommandService>()
     .AddSingleton<UtilityService>()
+    .AddSingleton<ModerationService>()
     .AddSingleton<CommandHandler>()
     .AddSingleton<Bot>()
     .BuildServiceProvider();

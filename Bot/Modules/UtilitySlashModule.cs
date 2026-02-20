@@ -12,10 +12,10 @@ public class UtilitySlashModule(UtilityService utility) : InteractionModuleBase<
     public async Task PingAsync() => await RespondAsync($"Pong! {Context.Client.Latency}ms");
 
     [SlashCommand("echo", "Repeats your message.")]
-    public async Task EchoAsync([Summary("text", "Text to repeat")] string message) => await RespondAsync(message);
+    public async Task EchoAsync([Summary("text", "Text to repeat")] string text) => await RespondAsync(text);
 
-    [SlashCommand("rng", "Produces a random number within a specified range")]
-    public async Task RNGAsync(int maxValue)
+    [SlashCommand("rng", "Produces a random number within a specified range.")]
+    public async Task RNGAsync([Summary("max-value", "The maximum value the random number can have")] int maxValue)
     {
         if (maxValue <= 0)
         {
